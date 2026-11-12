@@ -35,6 +35,18 @@
 - 通过云端 MCP 扩展大模型能力（智能家居控制、PC桌面操作、知识搜索、邮件收发等）
 - 自定义唤醒词、字体、表情与聊天背景，支持网页端在线修改 ([自定义Assets生成器](https://github.com/78/xiaozhi-assets-generator))
 
+### Android Agent（新增）
+
+- **零 PC 控制安卓**：ESP32-S3 直接作为 ADB Host，无需任何 PC 即可控制安卓平板/手机
+- **完整的安卓 MCP 工具集**：`connect`、`launch`、`look`、`tap`、`swipe`、`key`、`type`、`batch`、`status`、`done`
+- **中文输入通过 ADBKeyboard IME**：基于广播的 Unicode 文本直输，无需 PC 端输入法
+- **mDNS 多候选发现**：返回所有无线调试记录，逐个连接验证，跳过陈旧/轮换的端口
+- **长任务韧性**：TLS 心跳看门狗 + UDP keepalive 对抗 adbd 空闲断连；工具链执行期间收到服务器 goodbye 自动通过短 listen-detect 文本续接会话
+- **任务完成追踪**：`self.android.done` 工具标记任务彻底完成；其后 2 分钟内的 goodbye 视为自然收尾，非中断
+- **最近输入缓冲 + 陈旧隔离**：10 分钟 TTL 重置 + 任务开始标记，续接会话只看到当前任务的文本
+- **自然收尾检测**：用户语音时间戳（45 秒窗口）抑制用户说拜拜/休息时的假自愈
+- **端到端验证通过**：WPS 写作文——自动中断/续接、多会话完成、干净收尾
+
 ## 硬件
 
 ### 面包板手工制作实践

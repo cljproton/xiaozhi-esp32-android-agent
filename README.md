@@ -35,6 +35,18 @@ As a voice interaction entry, the XiaoZhi AI chatbot leverages the AI capabiliti
 - Cloud-side MCP to extend large model capabilities (smart home control, PC desktop operation, knowledge search, email, etc.)
 - Customizable wake words, fonts, emojis, and chat backgrounds with online web-based editing ([Custom Assets Generator](https://github.com/78/xiaozhi-assets-generator))
 
+### Android Agent (New)
+
+- **Zero-PC Android control**: ESP32-S3 acts as ADB Host, directly controls Android tablets/phones without any PC
+- **Complete MCP toolset for Android**: `connect`, `launch`, `look`, `tap`, `swipe`, `key`, `type`, `batch`, `status`, `done`
+- **Chinese text input via ADBKeyboard IME**: Broadcast-based Unicode text commit, no PC-side input method needed
+- **mDNS multi-candidate discovery**: Returns all wireless-debug records, verifies each by connecting, skips stale/rotated ports
+- **Long-task resilience**: TLS heartbeat watchdog + UDP keepalive against adbd idle drops; server goodbye during tool chain auto-resumes session via short listen-detect text
+- **Task completion tracking**: `self.android.done` tool marks task fully complete; goodbye within 2 min after is treated as natural end, not interruption
+- **Recent-typing buffer with stale isolation**: 10-minute TTL reset + task-start markers so resumed sessions only see current task's text
+- **Natural-end detection**: User voice timestamp (45s window) suppresses false auto-resume when user says goodbye/rest
+- **Validated end-to-end**: WPS essay writing — auto interrupt/resume, multi-session completion, clean shutdown
+
 ## Hardware
 
 ### Breadboard DIY Practice
