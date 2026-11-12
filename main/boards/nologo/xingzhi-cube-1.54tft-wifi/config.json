@@ -1,0 +1,15 @@
+{
+    "manufacturer": "nologo",
+    "type": "xingzhi-cube-1.54tft-wifi",
+    "target": "esp32s3",
+    "builds": [
+        {
+            "name": "xingzhi-cube-1.54tft-wifi",
+            "language": "zh-CN",
+            "wake_word": "nihaoxiaozhi",
+            "sdkconfig_append": [
+                "CONFIG_MBEDTLS_DYNAMIC_FREE_CONFIG_DATA=n"
+            ]
+        }
+    ]
+}
